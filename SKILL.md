@@ -1,6 +1,6 @@
 ---
 name: chanlun-trading-system
-description: Use when analyzing A-share, HK-stock, ETF, index, or futures technical 走势 with 缠论/缠中说禅 concepts — 中枢, 级别, 分型, 笔, 线段, 背驰, 区间套, 三类买卖点, 持股/持币, 技术面复盘 — or when converting Chan theory into reproducible backtest rules. Research and study only; never issues stock tips or promises returns.
+description: "把缠论分析变成先定级别、再认结构、先写失效点的可执行研究流程。Use for A-share, HK-stock, ETF, index, or futures analysis with 中枢、分型、笔、线段、背驰、区间套、三类买卖点 and multi-level recursion, or for converting Chan theory into reproducible backtest rules. Research and study only; never issue stock tips or promise returns."
 license: MIT (skill files) · 缠论 theory © 缠中说禅, used for study/commentary
 ---
 
