@@ -1,5 +1,6 @@
 from fastapi.testclient import TestClient
 
+from chanlun_visual import __version__
 from chanlun_visual.api import app
 from chanlun_visual.providers import canonical_symbol
 
@@ -10,7 +11,7 @@ client = TestClient(app)
 def test_health():
     response = client.get("/api/health")
     assert response.status_code == 200
-    assert response.json() == {"status": "ok", "version": "0.1.0", "execution_allowed": False}
+    assert response.json() == {"status": "ok", "version": __version__, "execution_allowed": False}
 
 
 def test_demo_and_html_export():

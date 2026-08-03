@@ -69,7 +69,10 @@ def test_skill_archive_is_filtered_and_reproducible(tmp_path):
         )
     first = first_dir / "chanlun-trading-system-skill.zip"
     second = second_dir / "chanlun-trading-system-skill.zip"
+    first_skillhub = first_dir / "chanlun-trading-system-skillhub.zip"
+    second_skillhub = second_dir / "chanlun-trading-system-skillhub.zip"
     assert hashlib.sha256(first.read_bytes()).digest() == hashlib.sha256(second.read_bytes()).digest()
+    assert hashlib.sha256(first_skillhub.read_bytes()).digest() == hashlib.sha256(second_skillhub.read_bytes()).digest()
 
     with ZipFile(first) as archive:
         names = set(archive.namelist())
@@ -79,6 +82,14 @@ def test_skill_archive_is_filtered_and_reproducible(tmp_path):
     assert prefix + "scripts/skill_workbench.py" in names
     assert not any(name.startswith(prefix + "src/") for name in names)
     assert prefix + "README.md" not in names
+
+    with ZipFile(first_skillhub) as archive:
+        skillhub_frontmatter = yaml.safe_load(
+            archive.read(prefix + "SKILL.md").decode("utf-8").split("---", 2)[1]
+        )
+    assert skillhub_frontmatter["slug"] == "chanlun-trading-system"
+    assert skillhub_frontmatter["version"] == "1.1.0"
+    assert skillhub_frontmatter["displayName"] == "缠论交易系统"
 
 
 def test_release_tag_must_match_package_version():

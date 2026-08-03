@@ -26,21 +26,21 @@ Chanlun's three classes of trade locations are referred to as **1st/2nd/3rd-clas
 After installing [`uv`](https://docs.astral.sh/uv/getting-started/installation/), run the pinned release without modifying an existing Python environment:
 
 ```bash
-uvx --from "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0" chanlun-visual
+uvx --from "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1" chanlun-visual
 ```
 
 For a persistent installation:
 
 ```bash
-uv tool install "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0"
+uv tool install "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1"
 chanlun-visual doctor --json
 chanlun-visual
 ```
 
-These remote commands require the GitHub `v0.1.0` tag to exist. Before it is published, use the local development path below. The public-quote adapter is optional; the bundled demo and CSV workflow do not need it:
+These remote commands require the GitHub `v0.1.1` tag to exist. Before it is published, use the local development path below. The public-quote adapter is optional; the bundled demo and CSV workflow do not need it:
 
 ```bash
-uv tool install --with yfinance "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0"
+uv tool install --with yfinance "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1"
 ```
 
 ### 2. Install the AI Skill
@@ -51,6 +51,8 @@ Codex/OpenAI users can ask `$skill-installer` to install `chanlun-trading-system
 mkdir -p "$HOME/.agents/skills"
 unzip chanlun-trading-system-skill.zip -d "$HOME/.agents/skills"
 ```
+
+Tencent SkillHub uses `chanlun-trading-system-skillhub.zip` from the same Release. It differs only by the distribution metadata required by SkillHub; the rules and helper script remain identical.
 
 The Skill and the visual runtime are separate install units. The Skill supports governed text analysis by itself; interactive charts also require `chanlun-visual`. The Skill checks `doctor` first and never installs software silently.
 

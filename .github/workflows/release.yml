@@ -37,7 +37,7 @@ jobs:
           uv build
           uv run python tools/build_skill_package.py --output-dir dist
           cd dist
-          sha256sum chanlun_visual-* chanlun-trading-system-skill.zip > SHA256SUMS
+          sha256sum chanlun_visual-* chanlun-trading-system-skill.zip chanlun-trading-system-skillhub.zip > SHA256SUMS
       - name: Verify wheel artifact
         run: |
           python -m venv .release-venv
@@ -51,6 +51,7 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             dist/chanlun_visual-* \
             dist/chanlun-trading-system-skill.zip \
+            dist/chanlun-trading-system-skillhub.zip \
             dist/SHA256SUMS \
             --draft \
             --generate-notes \

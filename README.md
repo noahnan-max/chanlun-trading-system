@@ -22,21 +22,21 @@
 安装 [`uv`](https://docs.astral.sh/uv/getting-started/installation/) 后，可以从固定版本一次性运行，不污染现有 Python 环境：
 
 ```bash
-uvx --from "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0" chanlun-visual
+uvx --from "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1" chanlun-visual
 ```
 
 需要长期使用：
 
 ```bash
-uv tool install "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0"
+uv tool install "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1"
 chanlun-visual doctor --json
 chanlun-visual
 ```
 
-上述远端命令以 GitHub `v0.1.0` tag 已发布为前提；未发布前请使用下方“本地开发安装”。公开行情是可选便利入口，CSV 与内置示例不依赖它：
+上述远端命令以 GitHub `v0.1.1` tag 已发布为前提；未发布前请使用下方“本地开发安装”。公开行情是可选便利入口，CSV 与内置示例不依赖它：
 
 ```bash
-uv tool install --with yfinance "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0"
+uv tool install --with yfinance "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1"
 ```
 
 ### 2. 安装 AI Skill
@@ -47,6 +47,8 @@ Codex/OpenAI 用户可以让 `$skill-installer` 从本 GitHub 仓库安装 `chan
 mkdir -p "$HOME/.agents/skills"
 unzip chanlun-trading-system-skill.zip -d "$HOME/.agents/skills"
 ```
+
+腾讯 SkillHub 使用同一 Release 中的 `chanlun-trading-system-skillhub.zip`；它只比通用包多出 SkillHub 要求的分发元数据，规则正文和脚本保持一致。
 
 Skill 与可视工作台运行时是两个安装单元：只装 Skill 可以进行规则化文字研究；要打开交互图表，还需要安装上面的 `chanlun-visual`。Skill 会先运行 `doctor`，缺失时只提示安装，不会静默修改环境。
 

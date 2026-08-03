@@ -11,12 +11,12 @@
 正式使用优先安装固定 Git tag：
 
 ```bash
-uv tool install "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0"
+uv tool install "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1"
 chanlun-visual doctor --json
 chanlun-visual
 ```
 
-一次性运行可用 `uvx --from "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.0" chanlun-visual`。远端命令要求对应 tag 已发布；仓库开发者使用 `uv sync --all-extras && uv run chanlun-visual`。
+一次性运行可用 `uvx --from "git+https://github.com/noahnan-max/chanlun-trading-system.git@v0.1.1" chanlun-visual`。远端命令要求对应 tag 已发布；仓库开发者使用 `uv sync --all-extras && uv run chanlun-visual`。
 
 默认只监听 `127.0.0.1:8791`。启动后可直接查看四周期合成示例，无需网络。`doctor` 不联网、不读取用户行情文件；可选行情未安装时输出 `pass_with_warnings`，不阻断 CSV 和示例。
 

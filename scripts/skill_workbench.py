@@ -13,7 +13,7 @@ from typing import Any, Dict, List
 
 INSTALL_COMMAND = (
     'uv tool install "git+https://github.com/noahnan-max/'
-    'chanlun-trading-system.git@v0.1.0"'
+    'chanlun-trading-system.git@v0.1.1"'
 )
 
 
