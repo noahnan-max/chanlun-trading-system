@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chanlun-visual"
+version = "0.1.0"
+description = "Local-first visual Chanlun research workbench"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "chanlun-trading-system contributors"}]
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+market = ["yfinance>=1.2,<2"]
+dev = [
+  "httpx>=0.28,<1",
+  "pyyaml>=6,<7",
+  "pytest>=8,<9",
+]
+
+[project.scripts]
+chanlun-visual = "chanlun_visual.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chanlun_visual"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

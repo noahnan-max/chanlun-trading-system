@@ -1,7 +1,6 @@
 ---
 name: chanlun-trading-system
 description: "把缠论分析变成先定级别、再认结构、先写失效点的可执行研究流程。Use for A-share, HK-stock, ETF, index, or futures analysis with 中枢、分型、笔、线段、背驰、区间套、三类买卖点 and multi-level recursion, or for converting Chan theory into reproducible backtest rules. Research and study only; never issue stock tips or promise returns."
-license: MIT (skill files) · 缠论 theory © 缠中说禅, used for study/commentary
 ---
 
 # Chanlun Trading System（缠论分析 Skill）
@@ -65,6 +64,24 @@ license: MIT (skill files) · 缠论 theory © 缠中说禅, used for study/comm
 7. **回测**：要做策略/代码时，从一个最小闭环起步，严格定义与可测代理分列输出。回测硬数字与"风控非选股"的诚实口径见 `references/empirical-evidence.md`。（结构化代理规则见 `references/backtest-proxies.md`）
 8. **自检**：新规则或重要结论，对照常见假阳性复核。（见 `references/self-test-cases.md`）
 
+## 可视化请求
+
+当用户要求“画出来 / 多周期标注 / 交互查看 / 导出分享”时，优先使用本仓库的本地工作台（见 `references/visual-workbench.md`），并遵守：
+
+1. 数据必须来自用户 CSV、内置合成示例或显式标注的可选公开行情源；不把合成数据当市场事实。
+2. 图上每个分型、笔、线段代理、中枢和背驰对象必须能回到原始 K 线范围及 `confirmed_at / available_at`。
+3. 多周期结果分层展示，不把 5m/30m 指标状态冒充日线结构确认。
+4. U1 多角度力度只作为可切换对照证据，不自动覆盖 MACD 基线或升级买卖点。
+5. 导出必须保留 `definition_mode / approximation_loss / as_of / input_sha256 / execution_allowed=false`。
+
+### 工作台调用协议
+
+1. 先运行 `chanlun-visual doctor --json`；只把 `pass / pass_with_warnings` 当作可启动，不把命令存在等同于行情可用。
+2. 若找不到命令，说明运行时与 Skill 分开安装，给出 `references/visual-workbench.md` 中的固定版本安装命令并等待用户授权；不得静默安装。
+3. 默认运行 `chanlun-visual`，只监听 `127.0.0.1:8791`。除非用户明确要求并理解风险，不绑定局域网或公网地址。
+4. 优先使用内置合成示例或用户 CSV。可选公开行情失败时展示逐周期失败原因并回到 CSV，不把缺失历史补零。
+5. 若只需机器检查或启动，可运行 `python scripts/skill_workbench.py check --json` 或 `python scripts/skill_workbench.py launch`。
+
 ## 输出模板
 
 ```markdown
@@ -89,6 +106,7 @@ license: MIT (skill files) · 缠论 theory © 缠中说禅, used for study/comm
 | `strict-original-system.md` | 原文自检门、严格/代理降级矩阵、编码契约 |
 | `structure-engine.md` | K线包含、分型、笔、线段、中枢、延伸/扩张 |
 | `visual-reading.md` | 图截图、书图、作者手绘图 |
+| `visual-workbench.md` | 本地可视工作台、CSV 契约、图层、时点回放与导出 |
 | `buy-sell-playbooks.md` | 一/二/三类买卖点流程、利润最大化模式、小转大 |
 | `multi-level-recursion.md` | 区间套、小转大、同级别分解、大小级别冲突 |
 | `filters.md` | MACD、RSI、趋势线、均线、筹码、板块强度 |
@@ -100,13 +118,15 @@ license: MIT (skill files) · 缠论 theory © 缠中说禅, used for study/comm
 
 ## 怎么用（安装）
 
-这是一个标准的 **Agent Skill**（Markdown 形态）。任意支持 Skill / 系统提示注入的 AI 编程或对话工具都能用：
+这是一个标准的 **Agent Skill**，分析规则与可视工作台运行时分开安装：
 
-- **Claude Code**：把整个 `chanlun-trading-system/` 目录放进 `~/.claude/skills/`，新会话自动识别（靠 `description` 触发）。
-- **其他 Agent / Codex / 本地模型**：把 `SKILL.md` 作为系统提示/上下文加载，需要细节时再按表喂入对应 `references/*.md`。
-- **不会写代码的人**：直接把 `SKILL.md` 全文贴进你的 AI 对话框，开头加一句"按这套规则帮我分析 XXXX 的走势，先定级别、先写失效点"。
+- **Codex / OpenAI**：从 GitHub 安装本 Skill，或把发布版 Skill ZIP 解压到 `$HOME/.agents/skills/chanlun-trading-system/`。需要可视界面时，再按 `references/visual-workbench.md` 安装 `chanlun-visual`。
+- **Claude Code**：把发布版 Skill 目录放进 `~/.claude/skills/chanlun-trading-system/`，新会话重新加载。
+- **其他 Agent / 本地模型**：加载 `SKILL.md`，需要细节时再按表读取对应 `references/*.md`。
+- **不会写代码的人**：可使用仓库中的通用 AI Markdown；要获得完整交互界面，使用后续签名桌面安装包或由可信的人协助安装本地运行时。
 
 ## 来源与致谢
 
 - 缠论（缠中说禅技术分析体系）原创归属 **缠中说禅**，本 Skill 是对其公开理论的**操作化整理与研究性解读**，用于学习与交流。
 - 工作流设计参考了对原著《教你炒股票》及多本技术注解/图解/实战书的交叉精读，并以"严格原文 vs 可测代理"的分层来抑制过拟合。
+- Skill 文件按仓库 MIT License 发布；缠论理论原始权利归其原作者。

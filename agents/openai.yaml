@@ -1,0 +1,4 @@
+interface:
+  display_name: "缠论可视研究工作台"
+  short_description: "缠论多周期结构标注、证据审计与可视化研究工作台助手"
+  default_prompt: "使用 $chanlun-trading-system 对指定证券或 OHLCV CSV 进行多周期缠论可视化研究，先定级别、标注结构和失效点。"

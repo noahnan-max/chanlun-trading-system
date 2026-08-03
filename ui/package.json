@@ -1,0 +1,37 @@
+{
+  "name": "chanlun-visual-ui",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "astryx": {
+    "theme": "@astryxdesign/theme-neutral"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "test": "vitest run",
+    "lint": "tsc -b --pretty false",
+    "astryx:doctor": "astryx doctor"
+  },
+  "dependencies": {
+    "@astryxdesign/core": "0.2.0",
+    "@astryxdesign/theme-neutral": "0.2.0",
+    "@stylexjs/stylex": "^0.19.0",
+    "echarts": "^6.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@astryxdesign/cli": "^0.2.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "jsdom": "^26.0.0",
+    "typescript": "^5.7.0",
+    "vite": "^8.0.0",
+    "vitest": "^3.0.0"
+  }
+}
