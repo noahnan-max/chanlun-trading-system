@@ -340,7 +340,7 @@ def build_centers(items: Sequence[Dict[str, Any]], timeframe: str, unit_type: st
         highs = [max(item["start_price"], item["end_price"]) for item in group]
         lows = [min(item["start_price"], item["end_price"]) for item in group]
         zg, zd = min(highs), max(lows)
-        if zd > zg:
+        if zd >= zg:
             continue
         centers.append(
             {
